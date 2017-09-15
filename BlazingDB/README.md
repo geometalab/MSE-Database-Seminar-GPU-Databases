@@ -5,5 +5,5 @@ Pull the repository, build the docker container and run the container.
 ```shell
 cd dbseminar/BlazingDB
 nvida-docker build -t blazingdb .
-docker run -d --name blazingDB -p 8890:8890  blazingdb
+nvida-docker run -d --name blazingdb -p 8890:8890  blazingdb
 ```
