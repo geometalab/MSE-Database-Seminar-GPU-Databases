@@ -1,4 +1,4 @@
-FROM nvidia/cuda:8.0-runtime-ubuntu14.04
+FROM nvidia/cuda:8.0-runtime-ubuntu16.04
 
 MAINTAINER Samuel Kurath <skurath@hsr.ch>
 
