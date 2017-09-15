@@ -14,6 +14,5 @@ ENTRYPOINT ["./opt/BlazingDB/entrypoint.sh"]
 RUN apt-get update \
 && apt-get install wget vim supervisor -y \
 && chmod +x /opt/BlazingDB/blazing-community-installer.sh \
-&& chmod +x /opt/OSMstream/entrypoint.sh \
-&& ./opt/BlazingDB/blazing-community-installer.sh \
 && chmod +x /opt/BlazingDB/entrypoint.sh \
+&& ./opt/BlazingDB/blazing-community-installer.sh \
