@@ -17,7 +17,6 @@ RUN apt-get update \
 && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
 && apt-get update \
 && apt-get install postgresql-9.6 -y \
-&& apt-get install postgresql-client -y \
 && cd /opt/pg-strom/ \
 && git clone https://github.com/pg-strom/devel.git pg_strom \
 && cd pg_strom \
