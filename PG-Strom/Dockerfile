@@ -2,7 +2,7 @@ FROM nvidia/cuda:8.0-runtime-ubuntu16.04
 
 MAINTAINER Samuel Kurath <skurath@hsr.ch>
 
-EXPOSE 8890 40001
+EXPOSE 5432
 
 COPY entrypoint.sh /opt/pg-strom/
 COPY postgresql.conf /opt/pg-strom/
@@ -11,7 +11,9 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENTRYPOINT ["./opt/pg-strom/entrypoint.sh"]
 
-RUN add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" \
+RUN apt-get update \
+&& apt-get install software-properties-common -y \
+&& add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" \
 && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - \
 && apt-get update \
 && apt-get install wget vim supervisor -y \
