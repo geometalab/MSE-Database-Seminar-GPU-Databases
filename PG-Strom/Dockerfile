@@ -11,8 +11,8 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 ENTRYPOINT ["./opt/pg-strom/entrypoint.sh"]
 
-RUN add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main"
-&& wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+RUN add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" \
+&& wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - \
 && apt-get update \
 && apt-get install wget vim supervisor -y \
 && apt-get install postgresql-9.6 -y \
