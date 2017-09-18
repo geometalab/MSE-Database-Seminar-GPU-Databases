@@ -12,7 +12,7 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ENTRYPOINT ["./opt/pg-strom/entrypoint.sh"]
 
 RUN apt-get update \
-&& apt-get install wget build-essential vim supervisor software-properties-common git -y \
+&& apt-get install wget build-essential vim supervisor software-properties-common git libpq-dev -y \
 && add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" \
 && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
 && apt-get update \
