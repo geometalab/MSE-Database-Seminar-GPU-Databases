@@ -13,7 +13,7 @@ ENTRYPOINT ["./opt/pg-strom/entrypoint.sh"]
 
 RUN apt-get update \
 && apt-get install wget build-essential vim supervisor software-properties-common git libpq-dev -y \
-&& apt-get install postgresql postgresql-contrib  -y \
+&& apt-get install postgresql postgresql-contrib postgresql-server-dev p -y \
 && cd /opt/pg-strom/ \
 && git clone https://github.com/pg-strom/devel.git pg_strom \
 && cd pg_strom \
