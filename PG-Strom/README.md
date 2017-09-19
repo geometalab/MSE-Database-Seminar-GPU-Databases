@@ -12,4 +12,5 @@ nvidia-docker run -d --name pg-strom pg-strom
 ```shell
 psql -h localhost -p 5432 -U postgres
 postgres=# CREATE EXTENSION pg_strom;
+postgres=# \dx
 ```
