@@ -13,10 +13,7 @@ ENTRYPOINT ["./opt/pg-strom/entrypoint.sh"]
 
 RUN apt-get update \
 && apt-get install wget build-essential vim supervisor software-properties-common git libpq-dev -y \
-&& add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" \
-&& wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
-&& apt-get update \
-&& apt-get install postgresql-9.5 postgresql-server-dev-9.5 -y \
+&& apt-get install postgresql postgresql-contrib  -y \
 && cd /opt/pg-strom/ \
 && git clone https://github.com/pg-strom/devel.git pg_strom \
 && cd pg_strom \
