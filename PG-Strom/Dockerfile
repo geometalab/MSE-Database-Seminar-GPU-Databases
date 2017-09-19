@@ -5,6 +5,7 @@ MAINTAINER Samuel Kurath <skurath@hsr.ch>
 EXPOSE 5432
 
 COPY entrypoint.sh /opt/pg-strom/
+COPY start_postgres.sh /opt/pg-strom/
 COPY postgresql.conf /opt/pg-strom/
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
@@ -20,4 +21,5 @@ RUN apt-get update \
 && make \
 && make install \
 && chmod +x /opt/pg-strom/entrypoint.sh \
-&& mv /opt/pg-strom/postgresql.conf /etc/postgresql/9.5/main/postgresql.conf \
+&& chmod +x /opt/pg-strom/start_postgres.sh \
+&& cp /opt/pg-strom/postgresql.conf /etc/postgresql/9.5/main/postgresql.conf \
