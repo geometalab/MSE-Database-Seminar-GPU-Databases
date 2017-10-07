@@ -16,8 +16,7 @@ Furthermore Postgres has the EXPLAIN command (https://www.postgresql.org/docs/9.
 with https://explain.depesz.com/ a nice tool to make the analyzations readable.
 
 
-##Notes
-
+## Notes
 
 ### Postgres
 The Postgres Container additionally has the Postgis extension installed for spatial queries.
