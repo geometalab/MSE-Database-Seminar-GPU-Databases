@@ -1,6 +1,6 @@
 # MSE-Database-Seminar-GPU-Databases
 This Repository provides Dockerfiles for a first touch with GPU Databases, 
-a Dockerfile for Postgres with the Postgis extension for benchmark purpose and the related queries.
+a Postgres Dockerfile for benchmark purpose and the related queries.
 
 ## Queries
 For the queries we use the New York City Taxi and Uber data from https://github.com/toddwschneider/nyc-taxi-data .
@@ -16,7 +16,14 @@ Furthermore Postgres has the EXPLAIN command (https://www.postgresql.org/docs/9.
 with https://explain.depesz.com/ a nice tool to make the analyzations readable.
 
 
-## GPU Databases
+##Notes
+
+
+### Postgres
+The Postgres Container additionally has the Postgis extension installed for spatial queries.
+And is shipped with tuned configuration parameters for a lot of data (see db-settings.sh file).
+
+### GPU Databases
 We created Dockerfiles for:
 *  PG-Strom
 *  MapD
