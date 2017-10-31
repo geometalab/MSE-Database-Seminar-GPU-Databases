@@ -6,8 +6,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         bsdmainutils \
         wget \
         curl \
+        python3 \
+        python3-pip \
         default-jre-headless && \
     apt-get remove --purge -y && \
+    pip3 install pandas \
+    pip3 install pymapd
     rm -rf /var/lib/apt/lists/*
 
 ADD mapd-ce-latest-Linux-x86_64-render.tar.gz /installs
