@@ -11,13 +11,18 @@ def run(args):
     for file in glob.glob("green.csv"):
         # for file in glob.glob("green_tripdata_2014-06.csv"):
         # for file in glob.glob("green_*.csv"):
-        df = pd.read_csv(file, usecols=range(0, 19),names=['VendorID','lpep_pickup_datetime','Lpep_dropoff_datetime','Store_and_fwd_flag','RateCodeID','Pickup_longitude','Pickup_latitude','Dropoff_longitude','Dropoff_latitude','Passenger_count','Trip_distance','Fare_amount','Extra','MTA_tax','Tip_amount','Tolls_amount','Ehail_fee','Total_amount','Payment_type','Trip_type'])
+        df = pd.read_csv(file,skiprows=1, names=['VendorID', 'lpep_pickup_datetime', 'Lpep_dropoff_datetime', 'Store_and_fwd_flag',
+                                      'RateCodeID', 'Pickup_longitude', 'Pickup_latitude', 'Dropoff_longitude',
+                                      'Dropoff_latitude', 'Passenger_count', 'Trip_distance', 'Fare_amount', 'Extra',
+                                      'MTA_tax', 'Tip_amount', 'Tolls_amount', 'Ehail_fee', 'Total_amount',
+                                      'Payment_type',
+                                      'Trip_type'])
         df = rename_green(file)
-
+        '''
         df = df.fillna(0.0)
         print(list(df.columns.values))
         print(df['pickup_datetime'])
-        '''
+        
         os.chdir(args.source)
         filename = 'tmp.csv'
         df.to_csv(filename, encoding='utf-8', index=False)
@@ -32,7 +37,8 @@ def rename_green(file):
     cols = ['Passenger_count', 'lpep_pickup_datetime', 'Lpep_dropoff_datetime', 'Pickup_longitude',
             'Pickup_latitude', 'Dropoff_longitude', 'Dropoff_latitude', 'Trip_distance', 'Fare_amount', 'Total_amount']
     #  'Total_amount']
-    df = pd.read_csv(file, date_parser=dateparse, parse_dates=['lpep_pickup_datetime', 'Lpep_dropoff_datetime'], header=0, index_col=None, usecols=cols)
+    df = pd.read_csv(file, date_parser=dateparse, parse_dates=['lpep_pickup_datetime', 'Lpep_dropoff_datetime'],
+                     header=0, index_col=None, usecols=cols)
     # df = pd.read_csv(file, comment=' ')
     # df['cab_type_id'] = 2
 
