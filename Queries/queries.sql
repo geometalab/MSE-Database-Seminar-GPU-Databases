@@ -39,7 +39,7 @@ WHERE  ( pickup_longitude BETWEEN -74.007511 AND -73.983479 )
 
 
 /* Query 6 average speed of Yellow taxi trips by hour of day in bounding box*/
-SELECT Extract(dow FROM pickup_datetime) AS dow,
+SELECT Extract(hour FROM pickup_datetime) AS hour,
        Avg(Round(trip_distance / NULLIF(Date_part('hour',
                                             dropoff_datetime - pickup_datetime),
                                  0)))
@@ -56,7 +56,7 @@ ORDER  BY dow;
 
 
 /* Query 7 average speed of Yellow taxi trips by hour of day */
-SELECT Extract(dow FROM pickup_datetime) AS dow,
+SELECT Extract(hour FROM pickup_datetime) AS hour,
        Avg(Round(trip_distance / NULLIF(Date_part('hour',
                                             dropoff_datetime - pickup_datetime),
                                  0)))
@@ -72,7 +72,7 @@ GROUP  BY dow
 ORDER  BY dow;
 
 
-/* Query 8 average speed of Yellow taxi trips by day of week in bounding box*/
+/* Query 8 average speed of Yellow taxi trips by day of week*/
 SELECT Extract(dow FROM pickup_datetime) AS dow,
        Avg(Round(trip_distance / NULLIF(Date_part('hour',
                                             dropoff_datetime - pickup_datetime),
@@ -86,7 +86,7 @@ WHERE  trip_distance > 0
 GROUP  BY dow
 ORDER  BY dow;
 
-/* Query 9 average speed of Yellow taxi trips by day of week */
+/* Query 9 average speed of Yellow taxi trips by day of week in bounding box*/
 SELECT Extract(dow FROM pickup_datetime) AS dow,
        Avg(Round(trip_distance / NULLIF(Date_part('hour',
                                             dropoff_datetime - pickup_datetime),
