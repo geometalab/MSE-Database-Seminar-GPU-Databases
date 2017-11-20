@@ -1,5 +1,5 @@
 /* Query 1 */
-SELECT cab_type,
+SELECT cab_type_id,
        Count(*)
 FROM   trips
 GROUP  BY 1;

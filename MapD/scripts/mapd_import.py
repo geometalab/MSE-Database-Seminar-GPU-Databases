@@ -11,12 +11,9 @@ year_month_regex = "tripdata_([0-9]{4})-([0-9]{2})"
 def run(args):
     os.chdir(args.source)
     for file in glob.glob("*.csv"):
-        match = re.findall(year_month_regex, file)
-        year = int(match[0][0])
-        month = int(match[0][1])
-        cab_type = 2
-
         if "green" in file:
+            year, month = get_year_month(file)
+            cab_type = 2
             if year < 2015:
                 schema = green_schema_pre_2015
             elif year == 2015 and month < 7:
@@ -27,6 +24,7 @@ def run(args):
                 schema = green_schema_2016_h2
             execute_command(file, schema, cab_type, args)
         elif "yellow" in file:
+            year, month = get_year_month(file)
             cab_type = 1
             if year < 2015:
                 schema = yellow_schema_pre_2015
@@ -35,6 +33,13 @@ def run(args):
             else:
                 schema = yellow_schema_2016_h2
             execute_command(file, schema, cab_type, args)
+
+
+def get_year_month(file):
+    match = re.findall(year_month_regex, file)
+    year = int(match[0][0])
+    month = int(match[0][1])
+    return year, month
 
 
 def execute_command(file, schema, cab_type, args):
