@@ -49,10 +49,9 @@ def execute_command(file, schema, cab_type, args):
     df = df.fillna(0.0)
     tmp_filename = 'tmp.csv'
     df.to_csv(tmp_filename, encoding='utf-8', index=False)
-    command = r"""echo "COPY {0} FROM '{1}{2}'  WITH (header='true');" | /mapd/bin/mapdql mapd -u {3} -p {4}"""
-    command = command.format('trips', args.source, tmp_filename, args.user, args.password)
+    command = r"""echo "COPY {0} FROM '{1}'  WITH (header='true');" | /mapd/bin/mapdql mapd -u {2} -p {3}"""
+    command = command.format('trips', os.path.join(args.source, tmp_filename), args.user, args.password)
     os.system(command)
-    os.remove(tmp_filename)
 
 
 def rename_columns(df, cab_type=2):
@@ -89,7 +88,10 @@ def main_function():
     parser.set_defaults(user="mapd", password="HyperInteractive", host="localhost", dbname="mapd",
                         source="/data/nyc-taxi-data/data/")
     args = parser.parse_args()
-    run(args)
+    if os.path.isabs(args.source):
+        run(args)
+    else:
+        raise argparse.ArgumentError(None, 'Source needs to be an absolute path, not {0} !'.format(args.source))
 
 
 green_schema_pre_2015 = ['vendor_id', 'lpep_pickup_datetime', 'lpep_dropoff_datetime',
