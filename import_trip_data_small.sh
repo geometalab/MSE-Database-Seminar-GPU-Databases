@@ -1,12 +1,9 @@
 #!/bin/bash
 
 mkdir -p small_data
-ls data/ | grep 2014 | xargs cp -t small_data/
+ls data/ | grep '.*green.*2015' | xargs cp -t small_data/
+ls data/ | grep '.*yellow.*2015' | xargs cp -t small_data/
 
-rm green_tripdata_2014-01.csv
-rm yellow_tripdata_2014-01.csv
-rm green_tripdata_2014-02.csv
-rm yellow_tripdata_2014-02.csv
 
 year_month_regex="tripdata_([0-9]{4})-([0-9]{2})"
 
