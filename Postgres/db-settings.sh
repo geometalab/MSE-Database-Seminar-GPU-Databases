@@ -3,6 +3,10 @@
 set -o pipefail
 set -o nounset
 
+# Note change to!!!
+# 75% effective
+# 25% shared 
+
 function alter_system() {
 	echo "Altering System parameters"
 	PGUSER="$POSTGRES_USER" psql --dbname="$POSTGRES_DB" <<-EOSQL
