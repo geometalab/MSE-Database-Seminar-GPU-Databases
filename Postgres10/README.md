@@ -1,14 +1,8 @@
 # mdillon/postgis
 
-## Run
+[![Build Status](https://travis-ci.org/appropriate/docker-postgis.svg)](https://travis-ci.org/appropriate/docker-postgis) [![Join the chat at https://gitter.im/appropriate/docker-postgis](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/appropriate/docker-postgis?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-    docker build -t postgres_mapd .
-    docker run --name postgres_mapd -v /data/dbseminar/:/dbseminar -e POSTGRES_PASSWORD=mysecretpassword -d postgres_mapd
-	su postgres -c /dbseminar/nyc-taxi-data/initialize_database.sh 
-	su postgres -c /dbseminar/nyc-taxi-data/import_trip_data.sh 
-	
-
-The `mdillon/postgis` image provides a Docker container running Postgres 9 with [PostGIS 2.3](http://postgis.net/) installed. This image is based on the official [`postgres`](https://registry.hub.docker.com/_/postgres/) image and provides variants for each version of Postgres 9 supported by the base image (9.2-9.6).
+The `mdillon/postgis` image provides a Docker container running Postgres 9 or 10 with [PostGIS 2.4](http://postgis.net/) installed. This image is based on the official [`postgres`](https://registry.hub.docker.com/_/postgres/) image and provides variants for each version of Postgres 9 supported by the base image (9.3-9.6) and Postgres 10.
 
 This image ensures that the default database created by the parent `postgres` image will have the following extensions installed:
 
